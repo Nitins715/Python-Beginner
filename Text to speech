@@ -1,0 +1,31 @@
+# Text to audio 
+# Module for windows 
+import pyttsx3 as pt
+import os
+
+def text_to_speech():
+    engine = pt.init()
+
+    voices = engine.getProperty("voices")
+    # male-0 , female-1 
+    engine.setProperty("voice",voices[0].id)
+    # speech rate 
+    engine.setProperty("rate",100)
+    # volume
+    engine.setProperty("volume",1.0)
+
+    count = 1
+    while True:
+        text = input("Enter text you want to say : ")
+        if(text.lower() == "quit"):
+            break
+        engine.say(text)
+        engine.runAndWait()
+         # to save file
+        file_name = f"speech_{count}.mp3"
+        engine.save_to_file(text,file_name)
+        engine.runAndWait()
+        count += 1 
+        # wait to speech to complete
+   
+text_to_speech()
