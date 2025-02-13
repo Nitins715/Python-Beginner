@@ -1,0 +1,17 @@
+#Image resizer
+import cv2
+
+source = input("Paste image path : ")
+destination = "newImage.png"
+scale_percent = int(input("Enter scaling size : "))
+
+src = cv2.imread(source,cv2.IMREAD_UNCHANGED)
+
+newWidth = int(src.shape[1]*scale_percent / 100)
+newHeight = int(src.shape[0]*scale_percent / 100)
+
+output = cv2.resize(src,(newWidth,newHeight))
+
+cv2.imwrite(destination,output)
+cv2.imshow("Resized Image", output)
+cv2.waitKey(0)
