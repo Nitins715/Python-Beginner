@@ -1,0 +1,58 @@
+# Guess the number game
+
+import random
+def play_game():
+    print("WELCOME TO NUMBER GUESSING GAME \n")
+    print("Choose Difficulty Level:")
+    print("4 - Extreme ")
+    print("3 - Difficult ")
+    print("2 - Medium ")
+    print("1 - Easy ")
+    print("0 - Quit")
+    
+    try:
+        level = int(input("Enter Difficulty Level: "))
+    except ValueError:
+        print("Invalid input. Please enter a number between 0 and 4.")
+        return
+
+    ranges = {4: 1000, 3: 100, 2: 100, 1: 100}
+    attempts = {4: 7, 3: 7, 2: 15, 1: 25}
+
+    if level in ranges:
+        range = ranges[level]
+        count = attempts[level]
+        target = random.randint(1, range)
+        print("You have",count,"chances to guess the number between 1 and",range)
+    elif level == 0:
+        print("We respect your decision. Thank you for playing!")
+        return
+    else:
+        print("Invalid level. Please restart the game.")
+        return
+
+    guesses = 0
+    while count > 0:
+        try:
+            user_choice = int(input("\nGuess the target: "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        guesses += 1
+        count -= 1
+
+        if user_choice == target:
+            print("Success! You guessed the correct number in", guesses,"attempts.")
+            break
+        elif user_choice < target:
+            print("Wrong! Guess a bigger number.")
+        else:
+            print("Wrong! Guess a smaller number.")
+        
+        print("Attempts left: ",count)
+
+    if count == 0:
+        print(" GAME OVER! The correct number was ",target)
+
+play_game()
