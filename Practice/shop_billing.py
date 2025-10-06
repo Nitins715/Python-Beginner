@@ -55,9 +55,9 @@ def handle_billing():
         print("\n--- Final Bill ---")
         for item, quantity in order.items():
             price_per_unit = prices[item]
-            print(f"{item.capitalize()}: {quantity} x ${price_per_unit:.2f} = ${quantity * price_per_unit:.2f}")
+            print(f"{item.capitalize()}: {quantity} x ₹{price_per_unit:.2f} = ₹{quantity * price_per_unit:.2f}")
         print("-" * 50)
-        print(f"Your total bill is: ${total:.2f}")
+        print(f"Your total bill is: ₹{total:.2f}")
     else:
         print("Bill cancelled. No items were added.")
         
